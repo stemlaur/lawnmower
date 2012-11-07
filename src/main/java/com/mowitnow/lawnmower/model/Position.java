@@ -3,6 +3,8 @@ package com.mowitnow.lawnmower.model;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import com.google.common.base.Preconditions;
+
 /**
  * Immutable position.
  * 
@@ -18,11 +20,13 @@ public class Position {
      * Construct a position in a cartesian plan.
      * 
      * @param x
-     *            the X position.
+     *            the X position, should not be null.
      * @param y
-     *            the Y position.
+     *            the Y position, should not be null.
      */
     public Position(final Integer x, final Integer y) {
+        Preconditions.checkNotNull(x, "x cannot be null");
+        Preconditions.checkNotNull(y, "y cannot be null");
         this.x = x;
         this.y = y;
     }

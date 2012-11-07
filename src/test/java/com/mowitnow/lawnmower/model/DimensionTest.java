@@ -4,6 +4,12 @@ import org.junit.Test;
 
 import com.mowitnow.lawnmower.exception.DimensionTooSmallException;
 
+/**
+ * Test dimension.
+ * 
+ * @author stemmer
+ * 
+ */
 public class DimensionTest {
 
     /**

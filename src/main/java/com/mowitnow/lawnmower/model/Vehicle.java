@@ -20,9 +20,9 @@ public class Vehicle {
      * Default constructor.
      * 
      * @param position
-     *            the position of the Vehicle.
+     *            the position of the Vehicle, should not be null.
      * @param direction
-     *            the direction of the vehicle.
+     *            the direction of the vehicle, should not be null.
      */
     public Vehicle(final Position position, final Direction direction) {
         Preconditions.checkNotNull(position, "Position cannot be null");
@@ -92,7 +92,7 @@ public class Vehicle {
      * Set the position of the vehicle.
      * 
      * @param position
-     *            newposition of the vehicle.
+     *            newposition of the vehicle, should not be null.
      */
     public void setPosition(Position position) {
         Preconditions.checkNotNull(position, "Position cannot be null");

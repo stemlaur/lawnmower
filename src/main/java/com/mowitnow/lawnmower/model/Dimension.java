@@ -21,9 +21,9 @@ public class Dimension {
      * Constructor of a dimension.
      * 
      * @param height
-     *            the height.
+     *            the height, should not be null.
      * @param width
-     *            the widtht.
+     *            the widtht, should not be null.
      * @throws DimensionTooSmallException
      *             when a side is given less than 1.
      */

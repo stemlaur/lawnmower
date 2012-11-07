@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
 import com.mowitnow.lawnmower.exception.WrongInputFormatException;
@@ -23,9 +25,12 @@ import com.mowitnow.lawnmower.service.PlayGround;
  * 
  */
 public class CommandExecutorImpl implements CommandExecutor {
+    private static final Logger LOG = LoggerFactory.getLogger(CommandExecutorImpl.class);
 
     @Override
     public List<Vehicle> getVehicles(Reader reader) throws IOException, WrongInputFormatException {
+        LOG.info("Start parsing the reader");
+
         Preconditions.checkNotNull(reader, "reader cannot be null");
 
         List<Vehicle> vehicles = new ArrayList<Vehicle>();
@@ -52,6 +57,7 @@ public class CommandExecutorImpl implements CommandExecutor {
                     playGround.turnLeft();
                     break;
                 default:
+                    LOG.error("A command is erroneous");
                     throw new WrongInputFormatException("A command cannot be found " + c);
                 }
             }
@@ -60,6 +66,7 @@ public class CommandExecutorImpl implements CommandExecutor {
         }
 
         if (vehicles.isEmpty()) {
+            LOG.error("No vehicle positions found");
             throw new WrongInputFormatException("No vehicle positions found");
         }
         return vehicles;
@@ -81,6 +88,7 @@ public class CommandExecutorImpl implements CommandExecutor {
             WrongInputFormatException {
         String line = bufferedReader.readLine();
         if (StringUtils.isEmpty(line)) {
+            LOG.error("The command line is empty");
             throw new WrongInputFormatException("The command line is empty");
         }
         return line;
@@ -107,6 +115,7 @@ public class CommandExecutorImpl implements CommandExecutor {
         String[] vehicleLine = l.split(" ");
 
         if (vehicleLine.length != 3) {
+            LOG.error("The vehicle line [{}] is not compatible", l);
             throw new WrongInputFormatException("The vehicle line [" + l + "] is not compatible");
         }
 
@@ -115,8 +124,10 @@ public class CommandExecutorImpl implements CommandExecutor {
                     Integer.parseInt(vehicleLine[0]),
                     Integer.parseInt(vehicleLine[1])), Direction.valueOf(vehicleLine[2]));
         } catch (NumberFormatException e) {
+            LOG.error("The vehicle line [{}] is not compatible", l);
             throw new WrongInputFormatException("The vehicle line [" + l + "] is not compatible");
         } catch (IllegalArgumentException e) {
+            LOG.error("The vehicle line [{}] is not compatible", l);
             throw new WrongInputFormatException("The vehicle line [" + l + "] is not compatible");
         }
     }
@@ -137,12 +148,14 @@ public class CommandExecutorImpl implements CommandExecutor {
             WrongInputFormatException {
         String line = bufferedReader.readLine();
         if (line == null) {
+            LOG.error("The dimension line [{}] is not compatible", line);
             throw new WrongInputFormatException("The dimension line [" + line
                     + "] is not compatible");
         }
         String[] dimensionLine = line.split(" ");
 
         if (dimensionLine.length != 2) {
+            LOG.error("The dimension line [{}] is not compatible", line);
             throw new WrongInputFormatException("The dimension line [" + line
                     + "] is not compatible");
         }
@@ -152,6 +165,7 @@ public class CommandExecutorImpl implements CommandExecutor {
                     Integer.parseInt(dimensionLine[0]),
                     Integer.parseInt(dimensionLine[1]));
         } catch (NumberFormatException e) {
+            LOG.error("The dimension line [{}] is not compatible", line);
             throw new WrongInputFormatException("The dimension line [" + line
                     + "] is not compatible");
         }
