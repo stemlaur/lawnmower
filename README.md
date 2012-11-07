@@ -2,7 +2,7 @@
 
 Here I describe important things about way I developed this project. If you're interested in my development and design skills, you might be interested in reading this. 
 
-**And if you disagree with what you read, please share your opinion with me :)**
+**And if you disagree with what you read, please share your opinion with me ^^ : http://stemlaur.fr/about
 
 ## Technical information
 
