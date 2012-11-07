@@ -18,7 +18,7 @@ Because my test should run on any platform, I unit test that my project works fo
 
 ### Versioning
 
-I created a tag with the final version of the project. Version 1.0.0 accessible here [].
+I created a tag with the final version of the project. Version 1.0.0.
 
 ### How to compile or launch the unit tests
 
